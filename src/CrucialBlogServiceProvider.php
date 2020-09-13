@@ -21,7 +21,7 @@ class CrucialBlogServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('crucial-blog.php'),
+                __DIR__ . '/../config/config.php' => config_path('crucial-blog.php'),
             ], 'config');
 
             // Publishing the views.
@@ -50,7 +50,7 @@ class CrucialBlogServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'crucial-blog');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'crucial-blog');
 
         // Register the main class to use with the facade
         $this->app->singleton('crucial-blog', function () {
