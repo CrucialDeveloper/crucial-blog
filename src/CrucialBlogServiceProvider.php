@@ -2,6 +2,7 @@
 
 namespace CrucialDeveloper\CrucialBlog;
 
+use CrucialDeveloper\CrucialBlog\Post;
 use Illuminate\Support\ServiceProvider;
 
 class CrucialBlogServiceProvider extends ServiceProvider
@@ -15,19 +16,19 @@ class CrucialBlogServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crucial-blog');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'crucial-blog');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'crucial-blog');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('crucial-blog.php'),
-            ], 'config');
+            ], 'Crucial Blog Config');
 
             // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/crucial-blog'),
-            ], 'views');*/
+            $this->publishes([
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/crucial-blog'),
+            ], 'views');
 
             // Publishing assets.
             /*$this->publishes([
@@ -54,7 +55,7 @@ class CrucialBlogServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton('crucial-blog', function () {
-            return new CrucialBlog;
+            return new Post;
         });
     }
 }
