@@ -3,11 +3,15 @@
     <div class="container mx-auto mt-8 space-y-16">
         @foreach ($posts as $post)
         <div>
-            <h2 class="text-2xl"> {{ $post->title }}</h2>
-            <div>
-                {{ $post->excerpt }}
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl"> {{ $post->title }}</h2>
+                <span class="text-sm text-gray-300">Published {{ $post->published_at->diffForHumans() }} by
+                    {{ $post->byline }}</span>
             </div>
-            <div class="p-8 bg-gray-900 min-w-full rounded flex items-center justify-center"
+            <div>
+                {!! $post->excerpt !!}
+            </div>
+            <div class="p-8 bg-gray-900 min-w-full rounded flex items-center justify-center mt-4"
                  style="height:600px">
                 <iframe style="width:100%;height:100%;"
                         src="{{ $post->video }}"
