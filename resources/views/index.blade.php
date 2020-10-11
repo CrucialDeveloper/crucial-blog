@@ -1,25 +1,23 @@
 <x-layouts.app title="Blog">
-
     <div class="container mx-auto mt-8 space-y-16">
+        <h2 class="text-3xl">Our Blog Posts</h2>
         @foreach ($posts as $post)
-        <div>
-            <div class="flex items-center justify-between">
-                <h2 class="text-2xl"> {{ $post->title }}</h2>
-                <span class="text-sm text-gray-300">Published {{ $post->published_at->diffForHumans() }} by
-                    {{ $post->byline }}</span>
+        <div class="flex w-full border rounded">
+            @if($post->image)
+            <img class="rounded-l w-80 mr-8"
+                 src="{{ Storage::disk('s3')->url($post->image) }}">
+            @endif
+            <div class="p-4 w-full">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-2xl"> {{ $post->title }}</h3>
+                    <span class="text-sm text-gray-300">Published {{ $post->published_at->diffForHumans() }} by
+                        {{ $post->byline }}</span>
+                </div>
+                <div>
+                    {!! $post->excerpt !!}
+                </div>
             </div>
-            <div>
-                {!! $post->excerpt !!}
-            </div>
-            <div class="p-8 bg-gray-900 min-w-full rounded flex items-center justify-center mt-4"
-                 style="height:600px">
-                <iframe style="width:100%;height:100%;"
-                        src="{{ $post->video }}"
-                        frameborder="0"
-                        webkitAllowFullScreen
-                        mozallowfullscreen
-                        allowfullscreen></iframe>
-            </div>
+
         </div>
         @endforeach
     </div>
