@@ -15,8 +15,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Request $request, Post $post)
+    public function show(Request $request, $slug)
     {
+
+        $post = Post::where('slug', $slug)->first();
         return view('crucial-blog::show', [
             'post' => $post
         ]);

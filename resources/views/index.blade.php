@@ -7,14 +7,22 @@
             <img class="rounded-l w-80 mr-8"
                  src="{{ Storage::disk('s3')->url($post->image) }}">
             @endif
-            <div class="p-4 w-full">
+            <div class="p-4 w-full flex flex-col">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-2xl"> {{ $post->title }}</h3>
+                    <a href="{{ url()->current() .'/' . $post->slug }}"
+                       class="hover:underline hover:text-blue-800">
+                        <h3 class="
+                       text-2xl"> {{ $post->title }} </h3>
+                    </a>
                     <span class="text-sm text-gray-300">Published {{ $post->published_at->diffForHumans() }} by
                         {{ $post->byline }}</span>
                 </div>
                 <div>
                     {!! $post->excerpt !!}
+                </div>
+                <div class="mt-auto text-right text-sm text-blue-800">
+                    <a href="{{ url()->current() .'/' . $post->slug }}"
+                       class="hover:underline">Read More</a>
                 </div>
             </div>
 
