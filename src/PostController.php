@@ -18,7 +18,7 @@ class PostController extends Controller
     public function show(Request $request, Post $post)
     {
         return view('crucial-blod::show', [
-            $post=> P
-        ])
+            'post' => $post
+        ]);
     }
 }
