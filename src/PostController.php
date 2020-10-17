@@ -17,7 +17,7 @@ class PostController extends Controller
 
     public function show(Request $request, Post $post)
     {
-        return view('crucial-blod::show', [
+        return view('crucial-blog::show', [
             'post' => $post
         ]);
     }
